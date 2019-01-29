@@ -40,5 +40,11 @@ namespace Fatura
             FormUrun formUrun = new FormUrun();
             formUrun.Show();
         }
+
+        private void musteriEkleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormMusteri form = new FormMusteri();
+            form.Show();
+        }
     }
 }

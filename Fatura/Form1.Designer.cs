@@ -69,6 +69,7 @@
             this.musteriEkleToolStripMenuItem.Name = "musteriEkleToolStripMenuItem";
             this.musteriEkleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.musteriEkleToolStripMenuItem.Text = "Musteri Ekle";
+            this.musteriEkleToolStripMenuItem.Click += new System.EventHandler(this.musteriEkleToolStripMenuItem_Click);
             // 
             // birimEkleToolStripMenuItem
             // 
