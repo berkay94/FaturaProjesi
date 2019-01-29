@@ -10,79 +10,79 @@ using System.Windows.Forms;
 
 namespace Fatura
 {
-    public partial class FormIl : Form
+    public partial class FormBirim : Form
     {
         FaturaContext db = new FaturaContext();
         int secilenId;
-        public FormIl()
+        public FormBirim()
         {
             InitializeComponent();
+        }
+
+        private void FormBirim_Load(object sender, EventArgs e)
+        {
+            Listele();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             try
             {
-                IL il = new IL();
-                il.ILAdi = txtilAdi.Text;
-                db.iller.Add(il);
+                Birim birim = new Birim();
+                birim.BirimAdi = txtBirimAd.Text;
+                db.birimler.Add(birim);
                 db.SaveChanges();
                 Listele();
             }
             catch (Exception ex)
             {
                 string str = ex.Message;
-                
+
             }
         }
 
         public void Listele()
         {
-            var list = db.iller.Select(I => new { I.ILId, I.ILAdi  }).ToList();
+            var list = db.birimler.Select(I => new {I.BirimId, I.BirimAdi }).ToList();
             dataGridView1.DataSource = list;
-            txtilAdi.Clear();
-            txtilAdi.Focus();
+            txtBirimAd.Clear();
+            txtBirimAd.Focus();
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             secilenId = int.Parse(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-            IL il = db.iller.Find(secilenId);
-            txtilAdi.Text = il.ILAdi;
-        }
-
-        private void FormIl_Load(object sender, EventArgs e)
-        {
-            Listele();
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                IL il = db.iller.Find(secilenId);
-                il.ILAdi = txtilAdi.Text;
-                db.SaveChanges();
-                Listele();
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Il secmeniz gerekiyor!");
-            }
+            Birim birim = db.birimler.Find(secilenId);
+            txtBirimAd.Text = birim.BirimAdi;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             try
             {
-                IL il = db.iller.Find(secilenId);
-                db.iller.Remove(il);
+                Birim birim = db.birimler.Find(secilenId);
+                db.birimler.Remove(birim);
                 db.SaveChanges();
                 Listele();
             }
             catch
             {
-                MessageBox.Show("Il secmeniz gerekiyor!");
+                MessageBox.Show("Birim secmeniz gerekiyor!");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Birim birim = db.birimler.Find(secilenId);
+                birim.BirimAdi = txtBirimAd.Text;
+                db.SaveChanges();
+                Listele();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Birim secmeniz gerekiyor!");
             }
         }
     }
