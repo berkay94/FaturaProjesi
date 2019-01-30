@@ -46,5 +46,17 @@ namespace Fatura
             FormMusteri form = new FormMusteri();
             form.Show();
         }
+
+        private void görüntüleDorgulaDüzenleToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormFaturaSorgulama fs = new FormFaturaSorgulama();
+            fs.Show();
+        }
+
+        private void yeniFaturaOlusturToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormYeniFatura yf = new FormYeniFatura();
+            yf.Show();
+        }
     }
 }
